@@ -1,0 +1,24 @@
+# Xcode
+.DS_Store
+*.xcuserstate
+*.xcworkspace
+xcuserdata/
+DerivedData/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Generated files
+*.generated.swift
+*+AutoAX.swift
+AutoAXIdentifiers.json
+.autoax-cache
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
