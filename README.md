@@ -9,26 +9,26 @@
 
 ---
 
-## 📖 What It Solves
+## Overview
 
 Manually maintaining accessibility identifiers is tedious, error-prone, and scales poorly:
 
-- ❌ Identifiers get outdated when properties are renamed
-- ❌ New outlets are forgotten, breaking UI tests
-- ❌ Inconsistent naming conventions across teams
-- ❌ Manual JSON exports for QA are time-consuming
+- Identifiers get outdated when properties are renamed
+- New outlets are forgotten, breaking UI tests
+- Inconsistent naming conventions across teams
+- Manual JSON exports for QA are time-consuming
 
 **NSAutoAXKit automates all of this.**
 
-- ✅ Deterministic identifiers: `TypeName.propertyName`
-- ✅ Regenerated automatically on every build
-- ✅ Works seamlessly with UIKit `@IBOutlet` properties
-- ✅ Optional JSON export for XCUITest integration
-- ✅ Zero runtime overhead, safe by design
+- Deterministic identifiers: `TypeName.propertyName`
+- Regenerated automatically on every build
+- Works seamlessly with UIKit `@IBOutlet` properties
+- Optional JSON export for XCUITest integration
+- Zero runtime overhead, safe by design
 
 ---
 
-## 🎯 Features
+## Features
 
 ### For Developers
 - **Zero Configuration**: Add the plugin, call one method, done
@@ -48,9 +48,7 @@ Manually maintaining accessibility identifiers is tedious, error-prone, and scal
 
 ---
 
-## 🚀 Quick Start
-
-### Installation
+## Installation
 
 Add NSAutoAXKit to your `Package.swift`:
 
@@ -72,9 +70,11 @@ targets: [
 ]
 ```
 
-### Integration
+---
 
-#### Option 1: Base View Controller (Recommended)
+## Integration
+
+### Option 1: Base View Controller (Recommended)
 
 Create a base class that all your view controllers inherit from:
 
@@ -97,12 +97,12 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-    // No additional code needed!
+    // No additional code needed
     // Identifiers are automatically applied in viewDidLoad via base class
 }
 ```
 
-#### Option 2: Manual Application
+### Option 2: Manual Application
 
 Call `applyAutoAX()` explicitly in each view controller:
 
@@ -120,7 +120,7 @@ class LoginViewController: UIViewController {
 }
 ```
 
-#### Option 3: Utility Method
+### Option 3: Utility Method
 
 Use the static utility method:
 
@@ -139,7 +139,7 @@ class LoginViewController: UIViewController {
 
 ---
 
-## 🔧 How It Works
+## How It Works
 
 ### Build Time
 
@@ -163,13 +163,13 @@ extension LoginViewController {
 
 ### Runtime
 
-Call `applyAutoAX()` or `applyAutoAXIfAvailable()` to apply the identifiers. That's it!
+Call `applyAutoAX()` or `applyAutoAXIfAvailable()` to apply the identifiers.
 
 ---
 
-## 📋 Identifier Format
+## Identifier Format
 
-NSAutoAXKit generates **deterministic** identifiers using this format:
+NSAutoAXKit generates deterministic identifiers using this format:
 
 ```
 <OwnerType>.<propertyName>
@@ -195,9 +195,9 @@ If a type has duplicate property names (rare but possible), NSAutoAXKit appends 
 
 ---
 
-## 📦 JSON Export for QA
+## JSON Export for QA
 
-Enable JSON export to get a machine-readable list of all identifiers:
+Enable JSON export to get a machine-readable list of all identifiers.
 
 The plugin automatically exports `AutoAXIdentifiers.json` to the build directory:
 
@@ -245,16 +245,16 @@ app.buttons[loginButtonID].tap()
 
 ---
 
-## 🎯 Supported Types
+## Supported Types
 
-### UIKit Classes (MVP)
+### UIKit Classes
 
 NSAutoAXKit automatically processes these types:
 
-- ✅ `UIViewController` (and subclasses)
-- ✅ `UIView` (and subclasses)
-- ✅ `UITableViewCell` (and subclasses)
-- ✅ `UICollectionViewCell` (and subclasses)
+- `UIViewController` (and subclasses)
+- `UIView` (and subclasses)
+- `UITableViewCell` (and subclasses)
+- `UICollectionViewCell` (and subclasses)
 
 ### UIKit Controls
 
@@ -266,15 +266,15 @@ These outlet types are automatically included:
 - `UIScrollView`, `UITableView`, `UICollectionView`, `UIStackView`
 - Generic `UIView` (catches custom subclasses)
 
-### Not Supported (MVP)
+### Current Limitations
 
-- ❌ SwiftUI views (planned for Phase 2)
-- ❌ Programmatic views (not declared as `@IBOutlet`)
-- ❌ Custom non-UIKit types
+- SwiftUI views (planned for Phase 2)
+- Programmatic views (not declared as `@IBOutlet`)
+- Custom non-UIKit types
 
 ---
 
-## 🛠️ Tooling Integration
+## Tooling Integration
 
 ### SwiftLint
 
@@ -294,7 +294,7 @@ excluded:
   - "**/Generated"
 ```
 
-### Periphery (Unused Code Detection)
+### Periphery
 
 Generated extensions might appear unused. Exclude the build directory:
 
@@ -321,7 +321,7 @@ Choose based on your team's workflow.
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Running Tests
 
@@ -331,15 +331,15 @@ swift test
 
 ### Test Coverage
 
-- ✅ Unit tests for source parser
-- ✅ Unit tests for identifier generation logic
-- ✅ Unit tests for code emission
-- ✅ Unit tests for JSON export
-- ✅ Integration tests for runtime behavior
+- Unit tests for source parser
+- Unit tests for identifier generation logic
+- Unit tests for code emission
+- Unit tests for JSON export
+- Integration tests for runtime behavior
 
 ---
 
-## 📊 CI/CD Integration
+## CI/CD Integration
 
 ### GitHub Actions
 
@@ -370,7 +370,7 @@ NSAutoAXKit works seamlessly with Xcode Cloud. The build plugin runs automatical
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### "No identifiers generated"
 
@@ -412,38 +412,38 @@ swift --version  # Should be 5.9 or higher
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
-### Phase 1 (Current - MVP)
-- ✅ UIKit `@IBOutlet` generation
-- ✅ Build plugin integration
-- ✅ Deterministic identifiers
-- ✅ JSON export
-- ✅ SwiftLint compatibility
-- ✅ Manual application methods
+### Phase 1 (Current)
+- UIKit `@IBOutlet` generation
+- Build plugin integration
+- Deterministic identifiers
+- JSON export
+- SwiftLint compatibility
+- Manual application methods
 
 ### Phase 2 (Future)
-- [ ] Stable keys via annotations (`@AutoAX("custom.id")`)
-- [ ] SwiftUI support
-- [ ] Optional safe swizzle for base classes
-- [ ] Incremental generation with caching
-- [ ] Programmatic view detection
+- Stable keys via annotations (`@AutoAX("custom.id")`)
+- SwiftUI support
+- Optional safe swizzle for base classes
+- Incremental generation with caching
+- Programmatic view detection
 
 ### Phase 3 (Advanced)
-- [ ] Accessibility audit checks
-- [ ] CI enforcement / lint rules
-- [ ] Xcode Source Editor Extension
-- [ ] Visual identifier inspector
+- Accessibility audit checks
+- CI enforcement / lint rules
+- Xcode Source Editor Extension
+- Visual identifier inspector
 
 ---
 
-## 💡 FAQ
+## FAQ
 
 **Q: Does this modify my source files?**  
 A: No. NSAutoAXKit generates extension files in the build directory. Your source files are never touched.
 
 **Q: What if I rename a property?**  
-A: The identifier updates automatically on the next build. This is a key benefit!
+A: The identifier updates automatically on the next build.
 
 **Q: Can I customize the identifier format?**  
 A: Not in MVP. Phase 2 will support custom annotations like `@AutoAX("my.custom.id")`.
@@ -462,12 +462,12 @@ A: NSAutoAXKit is Swift-only. Mixed Swift/ObjC projects can use it for Swift vie
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Please:
+Contributions are welcome. Please:
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+2. Create a feature branch (`git checkout -b feature/new-feature`)
 3. Follow Swift API Design Guidelines and the project's code style (see `RULES.md`)
 4. Add tests for new functionality
 5. Ensure `swift test` passes
@@ -484,29 +484,24 @@ swift test
 
 ---
 
-## 📄 License
+## License
 
 NSAutoAXKit is released under the MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Built with [SwiftSyntax](https://github.com/apple/swift-syntax)
-- Inspired by the need for better DX in iOS accessibility testing
-- Thanks to the Swift community for feedback and contributions
+- Inspired by the need for better developer experience in iOS accessibility testing
 
 ---
 
-## 📞 Support
+## Support
 
 - **Issues**: [GitHub Issues](https://github.com/yourorg/NSAutoAXKit/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/yourorg/NSAutoAXKit/discussions)
-- **Twitter**: [@yourhandle](https://twitter.com/yourhandle)
 
 ---
 
 **NSAutoAXKit — Automate Accessibility. Accelerate Delivery.**
-
-*The zero-effort way to make your UI testable, stable, and future-proof.*
-
